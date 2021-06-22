@@ -47,27 +47,46 @@ class handDetector():
 
                                 cv2.circle(img, (cx,cy), 15 , (255,0,0), cv2.FILLED)
 
+            else:
+                for id, lm in enumerate(myHand.landmark):
+                    # print(id,lm)
+                    h, w, c= img.shape
+                    cx, cy = int(lm.x*w), int(lm.y*h)
+                    #print(id, cx,cy)
+                    lmList.append([id,cx])
+                    #lmList.append([id,lm.z])
+                    #if id == 0:
+                    if draw:
+                        if id == 5:
+
+
+                                cv2.circle(img, (cx,cy), 15 , (250, 44, 250), cv2.FILLED)
+
         return lmList
 
-    def findPosition(self, img, handNo=0, handIndex=0, draw=True):
+    def findPosition2(self, img, handNo=0, handIndex=0, draw=True):
         lmList = []
         if self.result.multi_hand_landmarks:
             myHand = self.result.multi_hand_landmarks[handNo]
-            if self.result.multi_handedness[0].classification[0].index == 0:
+            if self.result.multi_handedness[0].classification[0].index != 0:
 
                 for id, lm in enumerate(myHand.landmark):
                     # print(id,lm)
                     h, w, c = img.shape
                     cx, cy = int(lm.x * w), int(lm.y * h)
                     # print(id, cx,cy)
-                    # lmList.append([id,cx,cy])
-                    lmList.append([id, lm.z])
+                    lmList.append([id,cx])
+                    #lmList.append([id, lm.z])
                     # if id == 0:
                     if draw:
                         if id == 5:
-                            cv2.circle(img, (cx, cy), 15, (255, 0, 0), cv2.FILLED)
+                            cv2.circle(img, (cx, cy), 15, (250, 44, 250), cv2.FILLED)
 
         return lmList
+
+
+
+
                 #for id , lm in enumerate(handLms.landmark()):
                     #print(id,lm)
                     #h, w, c= img.shape
