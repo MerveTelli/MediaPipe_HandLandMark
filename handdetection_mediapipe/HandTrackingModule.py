@@ -101,7 +101,7 @@ class handDetector():
                     cx, cy = int(lm.x * w), int(lm.y * h)
                     # print(id, cx,cy)
                     #lmList.append([id,lm.x])
-                    lmList.append([id, cx])
+                    lmList.append([id, cx, cy])
                     #lmList.append([id, lm.z])
                     # if id == 0:
                     if draw:
